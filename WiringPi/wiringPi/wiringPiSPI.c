@@ -100,10 +100,10 @@ void getDevice(char* spidev, int channel, int port) {
     sprintf(spidev, "/dev/spidev%i.%i", channel, port);
 }
 
-int wiringPiSPISetupMode (int channel, int port, int speed, int mode)
+int wiringPiSPISetupMode (int channel, int speed, int mode)
 {
   int fd ;
-
+  int port = 0;
   mode    &= 3 ;	// Mode is 0, 1, 2 or 3
   channel &= 1 ;	// Channel is 0 or 1
 
@@ -141,5 +141,5 @@ int wiringPiSPISetupMode (int channel, int port, int speed, int mode)
 
 int wiringPiSPISetup (int channel, int speed)
 {
-  return wiringPiSPISetupMode (channel, 0, speed, 0) ;
+  return wiringPiSPISetupMode (channel, speed, 0) ;
 }
